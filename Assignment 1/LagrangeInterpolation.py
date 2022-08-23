@@ -23,7 +23,7 @@ def Plot():
     Y_ACTUAL = np.sin(np.pi*X)
 
     # Plotting the actual function and the interpolated function
-    title((label = "Actual Values vs Interpolated Values"))
+    title(label = "Actual Values vs Interpolated Values")
     xlabel(r"$X/\pi \rightarrow$")
     ylabel(r"$\sin(X) \rightarrow$")
 
