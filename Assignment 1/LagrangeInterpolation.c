@@ -22,7 +22,7 @@ float LagrangeInterpolation(float *xx, float *yy, float x, int n)
 
 int main(int argc, char **argv){
     FILE *fp;
-    fp = fopen("DATA.txt", "w");
+    fp = fopen("LagrangeInterpolation.txt", "w");
 
     int n = atoi(argv[1]);
 
@@ -52,5 +52,6 @@ int main(int argc, char **argv){
         x += 0.02;
     }
 
+    return 0;
 
 }
