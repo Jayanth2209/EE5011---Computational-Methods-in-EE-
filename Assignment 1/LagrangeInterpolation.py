@@ -5,8 +5,8 @@ from pylab import *
 import os
 
 def CompileCCode(filename, N):
-    os.system("gcc -o " + filename + " " + filename + ".c")
-    os.system("./" + filename + " " + str(N))
+    os.system("gcc -o " + filename + ".out " + filename + ".c")
+    os.system("./" + filename + ".out " + str(N))
 
     TEXT = np.loadtxt(filename + ".txt")
     INP = TEXT[:,0] 
@@ -38,7 +38,7 @@ def Plot():
     show()
 
     X_ = np.array([0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2])
-    DELTA = X - np.sin(np.pi*INP)
+    DELTA = np.sin(np.pi*INP) - INTOUT
     print("Absolute Error in Interpolation: " + str(np.sum(np.abs(DELTA))))
 
     title(label = "Absolute Error in Interpolation")
