@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 float LagrangeInterpolation(float *xx, float *yy, float x, int n)
 {
@@ -21,8 +20,9 @@ float LagrangeInterpolation(float *xx, float *yy, float x, int n)
 }
 
 int main(int argc, char **argv){
+
     FILE *fp;
-    fp = fopen("LagrangeInterpolation.txt", "w");
+    fp = fopen("output.txt", "w");
 
     int n = atoi(argv[1]);
 
@@ -31,8 +31,8 @@ int main(int argc, char **argv){
 
     float XX[9] = {0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2};
 
-    float YY[10][9] = {{0,0.7071,1,0.7071,0,-0.7071,-1,-0.7071,0},
-                       {-0.02206, 0.71354, 0.99346, 0.71198, -0.00954, -0.6982, -0.99673, -0.70219, -0.01508},
+    float YY[10][9] = {{0,0.7071,1,0.7071,0,-0.7071,-1,-0.7071,0}, 
+                       {-0.02206, 0.71354, 0.99346, 0.71198, -0.00954, -0.6982, -0.99673, -0.70219, -0.01508}, 
                        {0.01944, 0.75825, 1.00754, 0.77135, 0.05384, -0.67254, -0.9966, -0.69503, 0.03759},
                        {-0.11507, 0.83545, 0.97555, 0.68465, -0.00715, -0.66635, -1.04396, -0.65814, 0.00712},
                        {0.1938, 0.50944, 0.89726, 0.77082, -0.08206, -0.72333, -0.94461, -0.74636, -0.09955},
@@ -47,7 +47,7 @@ int main(int argc, char **argv){
 
     for (int i = 0; i <= 100; i++)
     {
-        y = LagrangeInterpolation(xx, yy, x, n);
+        y = LagrangeInterpolation(xx, yy, x, 8);
         fprintf(fp, "%f %f\n", x, y);
         x += 0.02;
     }
