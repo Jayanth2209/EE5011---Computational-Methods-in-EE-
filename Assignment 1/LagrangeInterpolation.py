@@ -110,26 +110,11 @@ def GenGaussNoise():
     
     return OUT
 
-#Plot()
+#OUT = GenGaussNoise()
+#print(OUT)
 
-SIGMA = np.array([0.01, 0.04, 0.07, 0.10, 0.13, 0.16, 0.19, 0.22, 0.25])
-
-X = np.arange(0,2,1e-5)     # X Values
-Y_ACTUAL = np.sin(np.pi*X)  # Actual Y Values
-
-plot(X, Y_ACTUAL, label = "Actual Values", color = "black", linewidth = 2, linestyle = "-")
-show()
-for i in range(9): 
-    print(i+1)
-    INP, INTOUT = CompileCCode("LagrangeInterpolation", (i+1))
-    plot(INP, INTOUT, label = r"$\sigma = $" + str(SIGMA[i]), linestyle='dashed', linewidth=4)	
-    
-title("Actual Values vs Interpolated Values for various values of $\sigma$")
-xlabel(r"$X/\pi \rightarrow$")
-ylabel(r"$\sin(X) \rightarrow$")
-legend()
-#savefig("LagrangeInterpolationGaussNoise.png")
-show()
+Plot()
+GaussNoise()
 
 
 
