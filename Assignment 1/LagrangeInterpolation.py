@@ -8,7 +8,7 @@ def CompileCCode(filename, N):
     os.system("gcc -o " + filename + ".out " + filename + ".c")
     os.system("./" + filename + ".out " + str(N))
 
-    TEXT = np.loadtxt(filename + ".txt")
+    TEXT = np.loadtxt("output.txt")
     INP = TEXT[:,0] 
     INTOUT = TEXT[:,1]
 
@@ -37,7 +37,7 @@ def Plot():
     savefig("LagrangeInterpolation.png")
     show()
 
-    X_ = np.array([0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2])
+    X_ = np.arange(0,2.25,0.25)
     DELTA = np.sin(np.pi*INP) - INTOUT
     print("Absolute Error in Interpolation: " + str(np.sum(np.abs(DELTA))))
 
@@ -51,7 +51,8 @@ def Plot():
     show()
 
 def GaussNoise():
-    SIGMA = [0.01, 0.04, 0.07, 0.10, 0.13, 0.16, 0.19, 0.22, 0.25]
+    #SIGMA = [0.01, 0.04, 0.07, 0.10, 0.13, 0.16, 0.19, 0.22, 0.25]
+    SIGMA = np.arange(0.01,0.28,0.03)
 
     X = np.arange(0,2,1e-5)
     Y_ACTUAL = np.sin(np.pi*X)
@@ -69,7 +70,7 @@ def GaussNoise():
     savefig("LagrangeInterpolationGaussNoise.png")
     show()
 
-    X_ = np.array([0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2])
+    X_ = np.arange(0,2.25,0.25)
 
     ABSNOISE = []
     for i in range(10):
@@ -95,8 +96,10 @@ def GaussNoise():
     show()
 
 def GenGaussNoise():
-    SIGMA = [0.01, 0.04, 0.07, 0.10, 0.13, 0.16, 0.19, 0.22, 0.25]
-    X_ = np.array([0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2])
+    SIGMA = np.arange(0.01,0.28,0.03)
+
+    #X_ = np.array([0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2])
+    X_ = np.arange(0,2.25,0.25)
     Y_ = np.sin(np.pi*X_)
 
     OUT = []
