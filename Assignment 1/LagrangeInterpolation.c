@@ -45,7 +45,7 @@ int main(int argc, char **argv){
     float *xx = XX;
     float *yy = YY[n];
 
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i <= 100; i++)
     {
         y = LagrangeInterpolation(xx, yy, x, 8);
         fprintf(fp, "%f %f\n", x, y);

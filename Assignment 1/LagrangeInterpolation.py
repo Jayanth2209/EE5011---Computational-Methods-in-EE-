@@ -31,7 +31,7 @@ def Plot():
     plot(X, Y_ACTUAL, label = "Actual Values", color = "green", linewidth = 2)
 
     # Plotting the Interpolated function
-    plot(INP, INTOUT, label = "Interpolated Values", color = "blue", linewidth = 4, linestyle = "dashed")
+    plot(INP, INTOUT, label = "Interpolated Values", color = "blue", linewidth = 4, linestyle = '--')
 
     legend()
     #savefig("LagrangeInterpolation.png")
@@ -53,18 +53,19 @@ def Plot():
     show()
 
 def GaussNoise():
+
     SIGMA = np.array([0.01, 0.04, 0.07, 0.10, 0.13, 0.16, 0.19, 0.22, 0.25])
 
     X = np.arange(0,2,1e-5)     # X Values
     Y_ACTUAL = np.sin(np.pi*X)  # Actual Y Values
 
-    plot(X, Y_ACTUAL, label = "Actual Values", color = "black", linewidth = 2, linestyle = "-")
+    plot(X, Y_ACTUAL, label = "Actual Values", color = "black", linewidth = 4, linestyle = "-")
     
     for i in range(9): 
         INP, INTOUT = CompileCCode("LagrangeInterpolation", i+1)
-        plot(INP, INTOUT, label = r"$\sigma = $" + str(SIGMA[i]))
+        plot(INP, INTOUT, label = r"$\sigma = $" + str(SIGMA[i]), linewidth = 2, linestyle = "--")
     
-    title("Actual Values vs Interpolated Values for various values of $\sigma$")
+    title("Actual Values vs Interpolated Values with Gaussian Noise of Different Variance")
     xlabel(r"$X/\pi \rightarrow$")
     ylabel(r"$\sin(X) \rightarrow$")
     legend()
