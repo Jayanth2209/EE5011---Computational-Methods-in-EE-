@@ -4,17 +4,17 @@
 float LagrangeInterpolation(float *xx, float *yy, float x, int n)
 {
     float y = 0;
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i <= n; i++)
     {
         float L = 1;
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j <= n; j++)
         {
-            if (i != j)
+            if (j != i)
             {
                 L *= (x - xx[j]) / (xx[i] - xx[j]);
             }
         }
-        y += L * yy[i];
+        y = y + (L * yy[i]);
     }
     return y;
 }
@@ -45,7 +45,7 @@ int main(int argc, char **argv){
     float *xx = XX;
     float *yy = YY[n];
 
-    for (int i = 0; i <= 100; i++)
+    for (int i = 0; i < 100; i++)
     {
         y = LagrangeInterpolation(xx, yy, x, 8);
         fprintf(fp, "%f %f\n", x, y);
