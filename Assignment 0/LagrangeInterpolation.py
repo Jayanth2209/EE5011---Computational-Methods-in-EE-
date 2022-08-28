@@ -54,18 +54,18 @@ def Plot():
 
 def GaussNoise():
 
-    SIGMA = np.array([0.01, 0.04, 0.07, 0.10, 0.13, 0.16, 0.19, 0.22, 0.25])
+    SIGMA = np.array([0.01, 0.03, 0.05, 0.07, 0.09, 0.11, 0.13, 0.15, 0.17, 0.19, 0.21, 0.23, 0.25])
 
     X = np.arange(0,2,1e-5)     # X Values
     Y_ACTUAL = np.sin(np.pi*X)  # Actual Y Values
 
     plot(X, Y_ACTUAL, label = "Actual Values", color = "black", linewidth = 4, linestyle = "-")
     
-    for i in range(9): 
+    for i in range(len(SIGMA)): 
         INP, INTOUT = CompileCCode("LagrangeInterpolation", i+1)
         plot(INP, INTOUT, label = r"$\sigma = $" + str(SIGMA[i]), linewidth = 2, linestyle = "--")
     
-    title("Actual Values vs Interpolated Values with Gaussian Noise of Different Variance")
+    title("Actual Values vs Interpolated Values with Gaussian Noise ($\sigma$)")
     xlabel(r"$X/\pi \rightarrow$")
     ylabel(r"$\sin(X) \rightarrow$")
     legend()
@@ -75,12 +75,12 @@ def GaussNoise():
     X_ = np.array([0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2])
 
     ABSNOISE = []
-    for i in range(9):
+    for i in range(len(SIGMA)):
         INP, INTOUT = CompileCCode("LagrangeInterpolation", i+1)
         DELTA = np.sin(np.pi*INP) - INTOUT
         ABSNOISE.append(np.sum(np.abs(DELTA)))
         scatter(X_, np.zeros(len(X_)), marker = 'o', color = "blue")
-        semilogy(INP, DELTA, label = r"$\sigma = $" + str(SIGMA[i]))
+        semilogy(INP, DELTA, label = r"$\sigma = $" + str(round(SIGMA[i],3)))
     title("Absolute Error in Interpolation for various values of $\sigma$")
     xlabel(r"$X/\pi \rightarrow$")
     ylabel(r"Error $\rightarrow$")
@@ -98,7 +98,7 @@ def GaussNoise():
 
 def GenGaussNoise():
 
-    SIGMA = np.array([0.01, 0.04, 0.07, 0.10, 0.13, 0.16, 0.19, 0.22, 0.25])
+    SIGMA = np.array([0.01, 0.03, 0.05, 0.07, 0.09, 0.11, 0.13, 0.15, 0.17, 0.19, 0.21, 0.23, 0.25])
 
     X_ = np.array([0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2])
     Y_ = np.sin(np.pi*X_)
