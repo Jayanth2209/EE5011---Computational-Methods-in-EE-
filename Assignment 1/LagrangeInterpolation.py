@@ -34,7 +34,7 @@ def Plot():
     plot(INP, INTOUT, label = "Interpolated Values", color = "blue", linewidth = 4, linestyle = '--')
 
     legend()
-    #savefig("LagrangeInterpolation.png")
+    savefig("LagrangeInterpolation.png")
     show()
 
     X_ = np.array([0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2])
@@ -49,7 +49,7 @@ def Plot():
     scatter(X_, np.zeros(len(X_)), marker = 'o', color = "blue")
     semilogy(INP, DELTA, label = "Absolute Error", color = "green")
     legend()
-    #savefig("LagrangeInterpolationErrorAbs0.png")
+    savefig("LagrangeInterpolationErrorAbs0.png")
     show()
 
 def GaussNoise():
@@ -69,7 +69,7 @@ def GaussNoise():
     xlabel(r"$X/\pi \rightarrow$")
     ylabel(r"$\sin(X) \rightarrow$")
     legend()
-    #savefig("LagrangeInterpolationGaussNoise.png")
+    savefig("LagrangeInterpolationGaussNoise.png")
     show()
 
     X_ = np.array([0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2])
@@ -85,7 +85,7 @@ def GaussNoise():
     xlabel(r"$X/\pi \rightarrow$")
     ylabel(r"Error $\rightarrow$")
     legend()
-    #savefig("LagrangeInterpolationErrorAbs1.png")
+    savefig("LagrangeInterpolationErrorAbs1.png")
     show()
 
     plot(SIGMA, ABSNOISE, label = "Absolute Error vs $\sigma$")
@@ -93,7 +93,7 @@ def GaussNoise():
     xlabel(r"$\sigma \rightarrow$")
     ylabel(r"Error $\rightarrow$")
     legend()
-    #savefig("LagrangeInterpolationErrorAbsSigma.png")
+    savefig("LagrangeInterpolationErrorAbsSigma.png")
     show()
 
 def GenGaussNoise():
