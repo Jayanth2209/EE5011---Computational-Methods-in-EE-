@@ -159,7 +159,3 @@ for err in MAXERR:
     if (err < 0.00001):
         print("Order of Polynomial Interpolation that produces less than 0.000001 error: %d" % (n[MAXERR.index(err)])); break;
 
-X = linspace(0.1,0.9,1000)
-Y = sin(X*pi)/(sqrt(1-X**2))
-plot(X, Y, 'k')
-show()
