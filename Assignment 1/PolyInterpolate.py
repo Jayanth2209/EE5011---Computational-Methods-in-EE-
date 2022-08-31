@@ -80,18 +80,20 @@ def SINXX2(LENX,XX,N):
 
         AVGERR.append(mean(abs(YY - Y0)))
         MAXERR.append(max(abs(YY - Y0)))
-        #print("Average Error in Polynomial Interpolation of %dth Order (X sampled at %d Points): %f" % (n, len(X), mean(abs(YY - Y0))))
+        print("Average & Maximum Error in Polynomial Interpolation of %dth Order (X sampled at %d Points): %f and %f" % (n, len(X), mean(abs(YY - Y0)), max(abs(YY - Y0))))
 
         plot(XX, YY, 'ro', XX, Y0, 'b')
         title('Polynomial Interpolation of %dth Order (X sampled at %d Points)' % (n, len(X)))
         xlabel('X')
         ylabel('Y')
+        savefig('PolyIntOrder%dX%d.png' % (n, len(X)))
         show()
         semilogy(XX, abs(YY - Y0), 'ro', XX, abs(dYY), 'b')
         title('Error in Polynomial Interpolation of %dth Order (X sampled at %d Points)' % (n, len(X)))
         xlabel('X')
         ylabel('Error')
         legend(['Error', 'Derivative'])
+        savefig('PolyIntErrorOrder%dX%d.png' % (n, len(X)))
         show()
     
     return ([AVGERR, MAXERR])
@@ -100,23 +102,22 @@ def SINXX2(LENX,XX,N):
 n = [4] # Order of Polynomial Interpolation
 LENX = 5    # Number of points to sample X at
 XX = linspace(-0.5,1.5,200)
-#[A1, M1] = SINXX2(LENX,XX,n)
-#print("Average Error in Polynomial Interpolation of %dth Order (X sampled at %d Points): %f" % (n[0], LENX, A1[0]))
-#print("Maximum Error in Polynomial Interpolation of %dth Order (X sampled at %d Points): %f" % (n[0], LENX, M1[0]))
+[A1, M1] = SINXX2(LENX,XX,n)
+print("Average Error in Polynomial Interpolation of %dth Order (X sampled at %d Points): %f" % (n[0], LENX, A1[0]))
+print("Maximum Error in Polynomial Interpolation of %dth Order (X sampled at %d Points): %f" % (n[0], LENX, M1[0]))
 
 # QUESTION 2
 n = [4] # Order of Polynomial Interpolation
 LENX = 30   # Number of points to sample X at
 XX = linspace(-0.5,1.5,200)
-#[A2, M2] = SINXX2(LENX,XX,n)
-#print("Average Error in Polynomial Interpolation of %dth Order (X sampled at %d Points): %f" % (n[0], LENX, A2[0]))
-#print("Maximum Error in Polynomial Interpolation of %dth Order (X sampled at %d Points): %f" % (n[0], LENX, M2[0]))
+[A2, M2] = SINXX2(LENX,XX,n)
+print("Average Error in Polynomial Interpolation of %dth Order (X sampled at %d Points): %f" % (n[0], LENX, A2[0]))
+print("Maximum Error in Polynomial Interpolation of %dth Order (X sampled at %d Points): %f" % (n[0], LENX, M2[0]))
 
 # QUESTION 3 & 4
 n = array([3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]) # Order of Polynomial Interpolation
 LENX = 30   # Number of points to sample X at
 XX = linspace(-0.5,1.5,200)
-"""
 [A3, M3] = SINXX2(LENX,XX,n)
 FIG, AX = subplots()
 AX.plot(n, A3, 'r', label = 'Average Error')
@@ -125,13 +126,12 @@ AX.set_title('Average and Maximum Error in Polynomial Interpolation (X sampled a
 AX.set_xlabel('Order of Polynomial Interpolation')
 AX.set_ylabel('Error')
 AX.legend()
+savefig('AvgMaxErrorPolyIntX%d.png' % (LENX))
 show()
-"""
 
 # QUESTION 5
-n = array([8,9,10,11,12,13,14,15,16,17]) # Order of Polynomial Interpolation
-
-X = arange(0.1,0.95,0.005)
+n = array([8,9,10,11,12,13,14,15]) # Order of Polynomial Interpolation
+X = arange(0.1,0.95,0.05)
 Y = sin(X*pi)/(sqrt(1-X**2))
 XX = linspace(0.1,0.9,1000)
 MAXERR = []
@@ -145,15 +145,21 @@ for i in n:
     title('Polynomial Interpolation of %dth Order (X sampled at %d Points)' % (i, len(X)))
     xlabel('X')
     ylabel('Y')
-    #show()
+    savefig('Q5PolyIntOrder%d.png' % (i))
+    show()
     semilogy(XX, abs(YY - Y0), 'ro', XX, abs(dYY), 'b')
     title('Error in Polynomial Interpolation of %dth Order (X sampled at %d Points)' % (i, len(X)))
     xlabel('X')
     ylabel('Error')
     legend(['Error', 'Derivative'])
-    #show()
+    savefig('Q5PolyIntErrorOrder%d.png' % (i))
+    show()
 
 for err in MAXERR:
     if (err < 0.00001):
-        print("Order of Polynomial Interpolation that produces less than 0.000001 error: %d" % (n[MAXERR.index(err)]))
-        break
+        print("Order of Polynomial Interpolation that produces less than 0.000001 error: %d" % (n[MAXERR.index(err)])); break;
+
+X = linspace(0.1,0.9,1000)
+Y = sin(X*pi)/(sqrt(1-X**2))
+plot(X, Y, 'k')
+show()
