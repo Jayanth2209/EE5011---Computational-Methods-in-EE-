@@ -86,14 +86,14 @@ def SINXX2(LENX,XX,N):
         title('Polynomial Interpolation of %dth Order (X sampled at %d Points)' % (n, len(X)))
         xlabel('X')
         ylabel('Y')
-        savefig('PolyIntOrder%dX%d.png' % (n, len(X)))
+        #savefig('PolyIntOrder%dX%d.png' % (n, len(X)))
         show()
         semilogy(XX, abs(YY - Y0), 'ro', XX, abs(dYY), 'b')
         title('Error in Polynomial Interpolation of %dth Order (X sampled at %d Points)' % (n, len(X)))
         xlabel('X')
         ylabel('Error')
         legend(['Error', 'Derivative'])
-        savefig('PolyIntErrorOrder%dX%d.png' % (n, len(X)))
+        #savefig('PolyIntErrorOrder%dX%d.png' % (n, len(X)))
         show()
     
     return ([AVGERR, MAXERR])
@@ -126,7 +126,7 @@ AX.set_title('Average and Maximum Error in Polynomial Interpolation (X sampled a
 AX.set_xlabel('Order of Polynomial Interpolation')
 AX.set_ylabel('Error')
 AX.legend()
-savefig('AvgMaxErrorPolyIntX%d.png' % (LENX))
+#savefig('AvgMaxErrorPolyIntX%d.png' % (LENX))
 show()
 
 # QUESTION 5
@@ -145,14 +145,14 @@ for i in n:
     title('Polynomial Interpolation of %dth Order (X sampled at %d Points)' % (i, len(X)))
     xlabel('X')
     ylabel('Y')
-    savefig('Q5PolyIntOrder%d.png' % (i))
+    #savefig('Q5PolyIntOrder%d.png' % (i))
     show()
     semilogy(XX, abs(YY - Y0), 'ro', XX, abs(dYY), 'b')
     title('Error in Polynomial Interpolation of %dth Order (X sampled at %d Points)' % (i, len(X)))
     xlabel('X')
     ylabel('Error')
     legend(['Error', 'Derivative'])
-    savefig('Q5PolyIntErrorOrder%d.png' % (i))
+    #savefig('Q5PolyIntErrorOrder%d.png' % (i))
     show()
 
 for err in MAXERR:
